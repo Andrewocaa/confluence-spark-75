@@ -11,8 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as CodeOfConductRouteImport } from './routes/code-of-conduct'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as PodcastRouteImport } from './routes/podcast'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as WhistleblowingPolicyRouteImport } from './routes/whistleblowing-policy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -24,9 +27,19 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CodeOfConductRoute = CodeOfConductRouteImport.update({
+  id: '/code-of-conduct',
+  path: '/code-of-conduct',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PodcastRoute = PodcastRouteImport.update({
+  id: '/podcast',
+  path: '/podcast',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -34,39 +47,78 @@ const ServicesRoute = ServicesRouteImport.update({
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WhistleblowingPolicyRoute = WhistleblowingPolicyRouteImport.update({
+  id: '/whistleblowing-policy',
+  path: '/whistleblowing-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/code-of-conduct': typeof CodeOfConductRoute
   '/contact': typeof ContactRoute
+  '/podcast': typeof PodcastRoute
   '/services': typeof ServicesRoute
+  '/whistleblowing-policy': typeof WhistleblowingPolicyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/code-of-conduct': typeof CodeOfConductRoute
   '/contact': typeof ContactRoute
+  '/podcast': typeof PodcastRoute
   '/services': typeof ServicesRoute
+  '/whistleblowing-policy': typeof WhistleblowingPolicyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/code-of-conduct': typeof CodeOfConductRoute
   '/contact': typeof ContactRoute
+  '/podcast': typeof PodcastRoute
   '/services': typeof ServicesRoute
+  '/whistleblowing-policy': typeof WhistleblowingPolicyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/services'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/code-of-conduct'
+    | '/contact'
+    | '/podcast'
+    | '/services'
+    | '/whistleblowing-policy'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/services'
-  id: '__root__' | '/' | '/about' | '/contact' | '/services'
+  to:
+    | '/'
+    | '/about'
+    | '/code-of-conduct'
+    | '/contact'
+    | '/podcast'
+    | '/services'
+    | '/whistleblowing-policy'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/code-of-conduct'
+    | '/contact'
+    | '/podcast'
+    | '/services'
+    | '/whistleblowing-policy'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CodeOfConductRoute: typeof CodeOfConductRoute
   ContactRoute: typeof ContactRoute
+  PodcastRoute: typeof PodcastRoute
   ServicesRoute: typeof ServicesRoute
+  WhistleblowingPolicyRoute: typeof WhistleblowingPolicyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -85,11 +137,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/code-of-conduct': {
+      id: '/code-of-conduct'
+      path: '/code-of-conduct'
+      fullPath: '/code-of-conduct'
+      preLoaderRoute: typeof CodeOfConductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/podcast': {
+      id: '/podcast'
+      path: '/podcast'
+      fullPath: '/podcast'
+      preLoaderRoute: typeof PodcastRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -99,14 +165,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/whistleblowing-policy': {
+      id: '/whistleblowing-policy'
+      path: '/whistleblowing-policy'
+      fullPath: '/whistleblowing-policy'
+      preLoaderRoute: typeof WhistleblowingPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CodeOfConductRoute: CodeOfConductRoute,
   ContactRoute: ContactRoute,
+  PodcastRoute: PodcastRoute,
   ServicesRoute: ServicesRoute,
+  WhistleblowingPolicyRoute: WhistleblowingPolicyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
