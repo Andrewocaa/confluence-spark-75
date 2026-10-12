@@ -1,24 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { ArrowDown, ArrowUpRight, Building2, Cable, CheckCircle2, Globe2, Leaf, MapPin, ShieldCheck, Users } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { CallToAction } from '@/components/site/site-shell'
+import { services, pageHead } from '@/components/site/content'
+import hero from '@/assets/data-centre-exterior.jpg'
+export const Route = createFileRoute('/')({ head:()=>pageHead('Mission-critical projects. Exceptional people.', 'Confluence connects mission-critical projects with qualified mechanical and electrical teams across Europe. Specialist support for data centres, construction and renewables.'), component:Index })
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+ return <main><section className="hero"><img className="hero-image" src={hero} width={1920} height={1088} alt="Contemporary European data centre architecture" fetchPriority="high"/><div className="site-container hero-content fade-in"><div className="eyebrow">Your mission-critical partner</div><h1>Mission-critical projects.<br/><span>Exceptional people.</span></h1><p className="hero-description">Connecting your most complex projects with qualified mechanical and electrical teams across Europe.</p><div className="hero-actions"><Button asChild variant="brand"><Link to="/contact">Discuss your project <ArrowUpRight/></Link></Button><Button asChild variant="hero"><Link to="/services">Explore our services <ArrowUpRight/></Link></Button></div></div><div className="site-container hero-bottom"><span className="hero-location"><MapPin size={13}/> Pan-European expertise. Local impact.</span><span className="hero-caption">Built around your ambition</span><a href="#expertise" aria-label="Explore our expertise"><ArrowDown size={20}/></a></div></section><section className="sector-strip" aria-label="Our sectors"><div className="site-container sector-inner"><span className="strip-label">Expertise where<br/>it matters most</span><span className="sector-item"><Building2/>Data centres</span><span className="sector-item"><Cable/>Mechanical & electrical</span><span className="sector-item"><Leaf/>Cleantech & renewables</span><span className="sector-item"><Globe2/>Across Europe</span></div></section><section id="expertise" className="section site-container"><div className="eyebrow">Our expertise</div><div className="section-heading"><h2>Complex challenges.<br/>Connected solutions.</h2><p>From mission-critical infrastructure to the energy transition, we bring together the people and expertise that move your projects forward.</p></div><div className="service-grid">{services.map(s=><Link to="/services" key={s.number} className="service-card"><div className="service-image"><img src={s.image} alt={s.alt} width={1280} height={960} loading="lazy"/></div><div className="service-card-top"><div><span className="service-number">{s.number} / EXPERTISE</span><h3>{s.title}</h3></div><ArrowUpRight size={23}/></div><p>{s.description}</p></Link>)}</div></section><section className="section partnership"><div className="site-container partnership-grid"><div><div className="eyebrow">The Confluence difference</div><h2>More than a provider.<br/>A partner in your progress.</h2><p>Your project is too important for a one-size-fits-all approach. We combine specialist knowledge with flexible, hands-on support — so you can focus on delivery.</p><Link className="text-link" to="/about">Get to know Confluence <ArrowUpRight size={16}/></Link></div><div><div className="promise-row"><Users/><div><h3>The right people. From day one.</h3><p>Vetted M&E professionals with verified skill sets, matched to your project’s exact requirements.</p></div></div><div className="promise-row"><Globe2/><div><h3>European reach. Seamless delivery.</h3><p>From logistics to local compliance, our All-in Package takes care of the details across Europe.</p></div></div><div className="promise-row"><ShieldCheck/><div><h3>Accountability without compromise.</h3><p>Clear communication, honest commitments and a service promise we stand behind.</p></div></div></div></div></section><CallToAction/></main>
 }
