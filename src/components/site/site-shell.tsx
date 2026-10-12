@@ -2,9 +2,10 @@ import { Link } from '@tanstack/react-router'
 import { useState } from 'react'
 import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import originalLogo from '@/assets/confluence-original-logo.png.asset.json'
 
 export function Brand() {
-  return <Link to="/" className="brand" aria-label="Confluence Management Consulting home"><svg className="brand-mark" viewBox="0 0 40 44" fill="none" aria-hidden="true"><path d="M5 5L22 22L5 39M16 5L33 22L16 39" stroke="currentColor" strokeWidth="3.1"/><path d="M5 22H33" stroke="currentColor" strokeWidth="3.1"/></svg><div><div className="brand-name">confluence</div><div className="brand-subtitle">Management Consulting</div></div></Link>
+  return <Link to="/" className="brand" aria-label="Confluence Management Consulting home"><img className="brand-logo" src={originalLogo.url} alt="Confluence" width={241} height={252}/></Link>
 }
 const nav = [{ to: '/' as const, label: 'Home' }, { to: '/about' as const, label: 'About us' }, { to: '/services' as const, label: 'Our services' }, { to: '/contact' as const, label: 'Contact' }]
 export function SiteHeader() {
